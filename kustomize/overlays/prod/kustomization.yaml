@@ -8,7 +8,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/replicas
-        value: 5
+        value: 2
 
 images:
   - name: udemykcloud534/guestbook
