@@ -126,7 +126,7 @@ resource "aws_eks_node_group" "dev" {
     min_size     = 1
   }
 
-  instance_types = ["t3.medium"]
+  instance_types = ["t3.small"]
 
   depends_on = [
     aws_iam_role_policy_attachment.dev_eks_worker_node_policy,
@@ -250,7 +250,7 @@ resource "aws_eks_node_group" "prod" {
     min_size     = 1
   }
 
-  instance_types = ["t3.medium"]
+  instance_types = ["t3.small"]
 
   depends_on = [
     aws_iam_role_policy_attachment.prod_eks_worker_node_policy,
