@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: guestbook
+  namespace: argocd
+spec:
+  description: Project for test repo with all clusters and namespaces allowed
+  sourceRepos:
+    - https://github.com/crazylearning-cr/argo-multi-cluster-deployments.git
+  destinations:
+    # ✅ Dev-Cluster (us-east-1)
+    - namespace: '*'
+      server: https://0CABB8C2A283D3359D477288A8211A71.yl4.us-east-1.eks.amazonaws.com
+    - namespace: '*'
+      server: https://4F021F4CAD8A1F0D2BD7FE1970FA117C.gr7.ap-south-1.eks.amazonaws.com
+  # Allow creating Namespaces and all namespaced resources
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

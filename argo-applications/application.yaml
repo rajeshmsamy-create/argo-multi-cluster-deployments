@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-dev
+  namespace: argocd
+spec:
+  project: guestbook
+  source:
+    repoURL: 'https://github.com/crazylearning-cr/argo-multi-cluster-deployments.git'
+    targetRevision: main
+    path: kustomize/overlays/dev
+  destination:
+    server: https://0CABB8C2A283D3359D477288A8211A71.yl4.us-east-1.eks.amazonaws.com
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-prod
+  namespace: argocd
+spec:
+  project: guestbook
+  source:
+    repoURL: 'https://github.com/crazylearning-cr/argo-multi-cluster-deployments.git'
+    targetRevision: main
+    path: kustomize/overlays/prod
+  destination:
+    server: https://4F021F4CAD8A1F0D2BD7FE1970FA117C.gr7.ap-south-1.eks.amazonaws.com
+    namespace: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
