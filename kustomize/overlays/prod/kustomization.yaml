@@ -12,4 +12,4 @@ patches:
 
 images:
   - name: udemykcloud534/guestbook
-    newTag: green
+    newTag: orange
